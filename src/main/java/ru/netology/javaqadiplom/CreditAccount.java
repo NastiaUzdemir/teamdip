@@ -23,6 +23,12 @@ public class CreditAccount extends Account {
             );
         }
 
+        if (initialBalance < 0) {
+            throw new IllegalArgumentException(
+                    "Начальный баланс не может быть отрицательным, а у вас: " + initialBalance
+            );
+        }
+
         if (creditLimit < 0) {
             throw new IllegalArgumentException(
                     "Долг банку не должен быть отрицательным, а у вас: " + creditLimit
