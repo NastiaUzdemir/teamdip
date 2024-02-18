@@ -52,15 +52,16 @@ public class CreditAccountTest {
     // Проверка на отрицаетльный initialBalance
     @Test
     public void negativeBalance() {
-        CreditAccount account = new CreditAccount(
-                -1_000,
-                5_000,
-                15
-        );
+        int initialBalance = -1000;
+        int creditLimit = 5000;
+        int rate = 15;
 
-        account.add(3_000);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
+        });
 
-        assertEquals(2_000, account.getBalance());
+        assertEquals("Начальный баланс не может быть отрицательным, а у вас: " + initialBalance,
+                exception.getMessage());
     }
 
 
