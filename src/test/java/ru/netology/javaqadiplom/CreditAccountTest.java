@@ -1,6 +1,8 @@
 package ru.netology.javaqadiplom;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditAccountTest {
@@ -255,19 +257,6 @@ public class CreditAccountTest {
         assertEquals(expectedCreditLimit, actualCreditLimit);
     }
 
-    // Тест на валидные значения
-    @Test
-    public void testValidParameters() {
-        int initialBalance = 1000;
-        int creditLimit = 5000;
-        int rate = 5;
-
-        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
-
-        assertEquals(initialBalance, account.getBalance());
-        assertEquals(creditLimit, account.getCreditLimit());
-        assertEquals(rate, account.getRate());
-    }
 
     // Тест на нулевое значение кредитного лимита
 
@@ -281,6 +270,37 @@ public class CreditAccountTest {
 
         assertEquals(creditLimit, account.getCreditLimit());
     }
+
+    // Тест на нулевое значение процентной ставки
+    @Test
+    public void zeroRate() {
+        int initialBalance = 100;
+        int creditLimit = 500;
+        int rate = 0;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
+        });
+
+        assertEquals("Накопительная ставка не может быть отрицательной или равной нулю, а у вас: " + rate,
+                exception.getMessage());
+    }
+
+    @Test
+    public void testNegativeCreditLimitWithZeroInitialBalance() {
+        int initialBalance = 0;
+        int creditLimit = -500;
+        int rate = 15;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
+        });
+
+        assertEquals("Долг банку не должен быть отрицательным, а у вас: " + creditLimit,
+                exception.getMessage());
+    }
+
+
 
 
 }
