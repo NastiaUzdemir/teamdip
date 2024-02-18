@@ -47,7 +47,7 @@ public class CreditAccountTest {
             CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
         });
 
-        assertEquals("Накопительная ставка не может быть отрицательной, а у вас: " + rate,
+        assertEquals("Накопительная ставка не может быть отрицательной или равной нулю, а у вас: " + rate,
                 exception.getMessage());
     }
 
