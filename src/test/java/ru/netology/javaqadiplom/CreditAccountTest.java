@@ -254,5 +254,34 @@ public class CreditAccountTest {
 
         assertEquals(expectedCreditLimit, actualCreditLimit);
     }
+
+    // Тест на валидные значения
+    @Test
+    public void testValidParameters() {
+        int initialBalance = 1000;
+        int creditLimit = 5000;
+        int rate = 5;
+
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
+
+        assertEquals(initialBalance, account.getBalance());
+        assertEquals(creditLimit, account.getCreditLimit());
+        assertEquals(rate, account.getRate());
+    }
+
+    // Тест на нулевое значение кредитного лимита
+
+    @Test
+    public void testZeroCreditLimit() {
+        int initialBalance = 1000;
+        int creditLimit = 0;
+        int rate = 5;
+
+        CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
+
+        assertEquals(creditLimit, account.getCreditLimit());
+    }
+
+
 }
 
