@@ -182,4 +182,17 @@ public class SavingAccountTest {
         });
     }
 
+    // IllegalArgumentException при отрицательной ставке
+    @Test
+    public void negativeRate() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    11_000,
+                    1_000,
+                    10_000,
+                    -5
+            );
+        });
+    }
+
 }
