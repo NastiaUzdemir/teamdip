@@ -195,11 +195,13 @@ public class CreditAccountTest {
     // расчет процентов на отрицательном балансе
     @Test
     public void testYearChangeWithNegativeBalance() {
-        int initialBalance = -200;
+        int initialBalance = 300;
         int creditLimit = 5000;
         int rate = 15;
 
         CreditAccount account = new CreditAccount(initialBalance, creditLimit, rate);
+
+        account.pay(500);
 
         int expectedInterest = -30;
         int actualInterest = account.yearChange();
@@ -208,6 +210,7 @@ public class CreditAccountTest {
     }
 
     // расчет процентов на балансе равном нулю
+
 
     @Test
     public void testYearChangeWithZeroBalance() {
