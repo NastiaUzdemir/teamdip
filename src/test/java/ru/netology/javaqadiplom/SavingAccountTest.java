@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SavingAccountTest {
-
     // Пополнение на сумму, не превышающую максимальный баланс
     @Test
     public void shouldAddLessThanMaxBalance() {
